@@ -1,7 +1,6 @@
 package me.test.jcdecaux.presentation.views
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import me.test.jcdecaux.R
 

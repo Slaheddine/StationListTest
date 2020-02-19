@@ -9,5 +9,16 @@
         android:id="@+id/stationListActivityFragment"
         android:name="me.test.jcdecaux.presentation.views.StationListActivityFragment"
         android:label="fragment_station_list"
-        tools:layout="@layout/fragment_station_list" />
+        tools:layout="@layout/fragment_station_list" >
+        <action
+            android:id="@+id/action_stationListActivityFragment_to_stationDetailFragment2"
+            app:destination="@id/stationDetailFragment2"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/stationDetailFragment2"
+        android:name="me.test.jcdecaux.presentation.views.StationDetailFragment"
+        android:label="fragment_station_detail"
+        tools:layout="@layout/fragment_station_detail" />
 </navigation>
