@@ -3,12 +3,12 @@ package me.test.jcdecaux.presentation.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class StationEntity(
+data class StationItem(
     val number: Int,
     val contract_name: String?,
     val name: String?,
     val address: String?,
-    val position: PositionEntity?,
+    val position: PositionItem?,
     val banking: Boolean,
     val bonus: Boolean,
     val bike_stands: Int,
@@ -22,7 +22,7 @@ data class StationEntity(
         source.readString(),
         source.readString(),
         source.readString(),
-        source.readParcelable<PositionEntity>(PositionEntity::class.java.classLoader),
+        source.readParcelable<PositionItem>(PositionItem::class.java.classLoader),
         1 == source.readInt(),
         1 == source.readInt(),
         source.readInt(),
@@ -51,10 +51,10 @@ data class StationEntity(
 
     companion object {
         @JvmField
-        val CREATOR: Parcelable.Creator<StationEntity> =
-            object : Parcelable.Creator<StationEntity> {
-                override fun createFromParcel(source: Parcel): StationEntity = StationEntity(source)
-                override fun newArray(size: Int): Array<StationEntity?> = arrayOfNulls(size)
+        val CREATOR: Parcelable.Creator<StationItem> =
+            object : Parcelable.Creator<StationItem> {
+                override fun createFromParcel(source: Parcel): StationItem = StationItem(source)
+                override fun newArray(size: Int): Array<StationItem?> = arrayOfNulls(size)
             }
     }
 }

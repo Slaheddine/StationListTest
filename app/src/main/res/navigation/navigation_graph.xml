@@ -23,6 +23,6 @@
         tools:layout="@layout/fragment_station_detail" >
         <argument
             android:name="station"
-            app:argType="me.test.jcdecaux.presentation.model.StationEntity" />
+            app:argType="me.test.jcdecaux.presentation.model.StationItem" />
     </fragment>
 </navigation>

@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.station_item.view.*
 import me.test.jcdecaux.R
-import me.test.jcdecaux.presentation.model.StationEntity
+import me.test.jcdecaux.presentation.model.StationItem
 
 class StationsRecyclerAdapter(private val onItemClickListener: OnItemClickListener):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var listOfStations = arrayListOf<StationEntity>()
+    private var listOfStations = arrayListOf<StationItem>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return StationRecycleViewHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -28,7 +28,7 @@ class StationsRecyclerAdapter(private val onItemClickListener: OnItemClickListen
         stationViewHolder.bindView(listOfStations[position], onItemClickListener)
     }
 
-    fun addStationsList(newList: List<StationEntity>?) {
+    fun addStationsList(newList: List<StationItem>?) {
         if ((newList!=null)&&(newList?.size > 0)) {
             var oldSize = listOfStations.size
             listOfStations.addAll(newList)
@@ -45,7 +45,7 @@ class StationsRecyclerAdapter(private val onItemClickListener: OnItemClickListen
 
 class StationRecycleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bindView(stationItem: StationEntity, onItemClickListener : OnItemClickListener) {
+    fun bindView(stationItem: StationItem, onItemClickListener : OnItemClickListener) {
         itemView.stationName.text = stationItem.name
         itemView.setOnClickListener(View.OnClickListener {
             onItemClickListener.onItemClick(stationItem)
@@ -54,5 +54,5 @@ class StationRecycleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVie
 }
 
 interface OnItemClickListener {
-    fun onItemClick(stationItem : StationEntity)
+    fun onItemClick(stationItem : StationItem)
 }

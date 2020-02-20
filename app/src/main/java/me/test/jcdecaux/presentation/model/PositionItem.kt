@@ -3,7 +3,7 @@ package me.test.jcdecaux.presentation.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class PositionEntity(
+data class PositionItem(
 
     val lat: Double,
     val lng: Double
@@ -22,12 +22,12 @@ data class PositionEntity(
 
     companion object {
         @JvmField
-        val CREATOR: Parcelable.Creator<PositionEntity> =
-            object : Parcelable.Creator<PositionEntity> {
-                override fun createFromParcel(source: Parcel): PositionEntity =
-                    PositionEntity(source)
+        val CREATOR: Parcelable.Creator<PositionItem> =
+            object : Parcelable.Creator<PositionItem> {
+                override fun createFromParcel(source: Parcel): PositionItem =
+                    PositionItem(source)
 
-                override fun newArray(size: Int): Array<PositionEntity?> = arrayOfNulls(size)
+                override fun newArray(size: Int): Array<PositionItem?> = arrayOfNulls(size)
             }
     }
 }

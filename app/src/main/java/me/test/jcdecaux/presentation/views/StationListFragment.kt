@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_station_list.*
 import me.test.jcdecaux.R
 import me.test.jcdecaux.presentation.adapter.OnItemClickListener
 import me.test.jcdecaux.presentation.adapter.StationsRecyclerAdapter
-import me.test.jcdecaux.presentation.model.StationEntity
+import me.test.jcdecaux.presentation.model.StationItem
 import me.test.jcdecaux.presentation.viewmodels.StationViewModel
 import org.koin.android.ext.android.inject
 
@@ -42,7 +42,7 @@ class StationListFragment : Fragment() {
         stationListView.layoutManager = LinearLayoutManager(activity)
 
         stationListAdapter = StationsRecyclerAdapter(object : OnItemClickListener {
-            override fun onItemClick(station: StationEntity) {
+            override fun onItemClick(station: StationItem) {
                 openDetailStation(station)
             }
         })
@@ -60,7 +60,7 @@ class StationListFragment : Fragment() {
 
         initRecycleView()
 
-        stationsListViewModel.stationListLiveData.observe(viewLifecycleOwner, Observer { result : List<StationEntity> ->
+        stationsListViewModel.stationListLiveData.observe(viewLifecycleOwner, Observer { result : List<StationItem> ->
             manageDataResponse(result)
         })
 
@@ -71,7 +71,7 @@ class StationListFragment : Fragment() {
         progressBar.visibility = View.VISIBLE
     }
 
-    fun manageDataResponse(stations  : List<StationEntity>) {
+    fun manageDataResponse(stations  : List<StationItem>) {
         progressBar.visibility = View.GONE
         stationListAdapter.addStationsList(stations)
     }
@@ -80,7 +80,7 @@ class StationListFragment : Fragment() {
         progressBar.visibility = View.GONE
     }
 
-    fun openDetailStation(station : StationEntity) {
+    fun openDetailStation(station : StationItem) {
         var action = StationListFragmentDirections.actionStationListActivityFragmentToStationDetailFragment2(station);
         findNavController().navigate(action)
     }
