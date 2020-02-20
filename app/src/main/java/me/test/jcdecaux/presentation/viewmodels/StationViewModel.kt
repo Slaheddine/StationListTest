@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import me.test.jcdecaux.data.network.RestApi
+import me.test.jcdecaux.data.network.StationRestApi
 import me.test.jcdecaux.presentation.model.StationEntity
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,13 +19,13 @@ class StationViewModel : ViewModel(), KoinComponent {
     val stationListLiveData: MutableLiveData<List<StationEntity>> = MutableLiveData()
     val failure : MutableLiveData<Unit> = MutableLiveData()
 
-    private val service by inject<RestApi>()
+    private val stationRestApi by inject<StationRestApi>()
 
     fun loadStation() {
 
         viewModelScope.launch {
 
-            val tanStops = service.getStations();
+            val tanStops = stationRestApi.service.getStations();
 
             tanStops.enqueue(object: Callback<List<StationEntity>> {
                 override fun onResponse(call: Call<List<StationEntity>>, response: Response<List<StationEntity>>) {
