@@ -28,7 +28,11 @@ class StationDetailFragment : Fragment() {
 
         if(arguments!=null) {
             var arg = StationDetailFragmentArgs.fromBundle(arguments!!)
-            stationName.text = arg.station.name
+            number.text = "number : ${arg.station.number}"
+            name.text = "name : ${arg.station.name}"
+            contract_name.text = "contract_name : ${arg.station.contract_name}"
+            available_bikes.text = "available_bikes : ${arg.station.available_bikes}"
+            available_bike_stands.text = "available_bike_stands : ${arg.station.available_bike_stands}"
         }
 
     }
