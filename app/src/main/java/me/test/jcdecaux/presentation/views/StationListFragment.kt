@@ -35,7 +35,7 @@ class StationListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView();
-        stationsListViewModel.loadStation()
+        stationsListViewModel.loadStations()
     }
 
     fun initRecycleView() {

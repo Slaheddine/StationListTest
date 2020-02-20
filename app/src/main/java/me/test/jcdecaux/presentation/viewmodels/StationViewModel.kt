@@ -13,7 +13,7 @@ class StationViewModel(var getStationUseCase : GetStationsUseCase) : ViewModel()
     val failure : MutableLiveData<Unit> = MutableLiveData()
 
 
-    fun loadStation() {
+    fun loadStations() {
 
         val observer = getStationUseCase.invoke( object: UseCaseCallBack<List<StationItem>> {
             override fun onSuccess(it: List<StationItem>) {
