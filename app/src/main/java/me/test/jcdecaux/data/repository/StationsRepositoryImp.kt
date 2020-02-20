@@ -8,10 +8,8 @@ import me.test.jcdecaux.domain.repository.StationsRepository
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class StationsRepositoryImp : StationsRepository, KoinComponent {
+class StationsRepositoryImp(var stationRestApi : StationRestApi, var mapper : StationDataMapper) : StationsRepository {
 
-    val stationRestApi by inject<StationRestApi>()
-    val mapper by inject<StationDataMapper>()
 
 
     override fun getStations(): Observable<List<Station>> {
