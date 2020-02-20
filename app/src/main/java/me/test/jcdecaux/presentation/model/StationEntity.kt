@@ -15,7 +15,7 @@ data class StationEntity(
     val available_bike_stands: Int,
     val available_bikes: Int,
     val status: String?,
-    val last_update: Int
+    val last_update: Double
 ) : Parcelable {
     constructor(source: Parcel) : this(
         source.readInt(),
@@ -29,7 +29,7 @@ data class StationEntity(
         source.readInt(),
         source.readInt(),
         source.readString(),
-        source.readInt()
+        source.readDouble()
     )
 
     override fun describeContents() = 0
@@ -46,7 +46,7 @@ data class StationEntity(
         writeInt(available_bike_stands)
         writeInt(available_bikes)
         writeString(status)
-        writeInt(last_update)
+        writeDouble(last_update)
     }
 
     companion object {

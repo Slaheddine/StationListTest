@@ -5,16 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_station_list.*
 import me.test.jcdecaux.R
 import me.test.jcdecaux.presentation.model.PositionEntity
 import me.test.jcdecaux.presentation.model.StationEntity
+import me.test.jcdecaux.presentation.viewmodels.StationViewModel
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 class StationListFragment : Fragment() {
+
+    val moviesListViewModel = StationViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +42,37 @@ class StationListFragment : Fragment() {
             12,
             1,
             "satus",
-            1221)
+            1221.0)
 
-        button.setOnClickListener(View.OnClickListener {
 
-            var action = StationListFragmentDirections.actionStationListActivityFragmentToStationDetailFragment2(station);
-            Navigation.findNavController(view).navigate(action)
+        initView();
+        moviesListViewModel.loadStation()
+
+    }
+
+    private fun initView() {
+
+        moviesListViewModel.stationListLiveData.observe(viewLifecycleOwner, Observer { result : List<StationEntity> ->
+            manageDataResponse(result)
         })
+
+        moviesListViewModel.failure.observe(viewLifecycleOwner, Observer { result : Unit ->
+            manageFailureResponse()
+        })
+
+        progressBar.visibility = View.VISIBLE
+    }
+
+    fun manageDataResponse(station  : List<StationEntity>) {
+        progressBar.visibility = View.GONE
+    }
+
+    fun manageFailureResponse() {
+        progressBar.visibility = View.GONE
     }
 }
+
+/*
+ var action = StationListFragmentDirections.actionStationListActivityFragmentToStationDetailFragment2(station);
+            Navigation.findNavController(view).navigate(action)
+ */
