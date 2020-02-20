@@ -10,24 +10,17 @@ import me.test.jcdecaux.presentation.model.StationEntity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class StationViewModel : ViewModel() {
+class StationViewModel : ViewModel(), KoinComponent {
 
     val stationListLiveData: MutableLiveData<List<StationEntity>> = MutableLiveData()
     val failure : MutableLiveData<Unit> = MutableLiveData()
 
+    private val service by inject<RestApi>()
+
     fun loadStation() {
-
-        val baseURL = "https://api.jcdecaux.com/vls/v1/"
-        val retrofit = Retrofit.Builder()
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(baseURL)
-            .build()
-
-        var service = retrofit.create(RestApi::class.java)
-
 
         viewModelScope.launch {
 

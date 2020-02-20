@@ -12,16 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_station_list.*
 import me.test.jcdecaux.R
 import me.test.jcdecaux.presentation.adapter.OnItemClickListener
-import me.test.jcdecaux.presentation.adapter.stationsRecyclerAdapter
+import me.test.jcdecaux.presentation.adapter.StationsRecyclerAdapter
 import me.test.jcdecaux.presentation.model.StationEntity
 import me.test.jcdecaux.presentation.viewmodels.StationViewModel
+import org.koin.android.ext.android.inject
 
 
 class StationListFragment : Fragment() {
 
-    val moviesListViewModel = StationViewModel()
+    val stationsListViewModel by inject<StationViewModel>()
 
-    lateinit var movieListAdapter: stationsRecyclerAdapter
+    lateinit var stationListAdapter: StationsRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,19 +35,19 @@ class StationListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initView();
-        moviesListViewModel.loadStation()
+        stationsListViewModel.loadStation()
     }
 
     fun initRecycleView() {
         stationListView.layoutManager = LinearLayoutManager(activity)
 
-        movieListAdapter = stationsRecyclerAdapter(object : OnItemClickListener {
+        stationListAdapter = StationsRecyclerAdapter(object : OnItemClickListener {
             override fun onItemClick(station: StationEntity) {
                 openDetailStation(station)
             }
         })
 
-        stationListView.adapter = movieListAdapter
+        stationListView.adapter = stationListAdapter
 
         val dividerItemDecoration = DividerItemDecoration(
             activity,
@@ -59,11 +60,11 @@ class StationListFragment : Fragment() {
 
         initRecycleView()
 
-        moviesListViewModel.stationListLiveData.observe(viewLifecycleOwner, Observer { result : List<StationEntity> ->
+        stationsListViewModel.stationListLiveData.observe(viewLifecycleOwner, Observer { result : List<StationEntity> ->
             manageDataResponse(result)
         })
 
-        moviesListViewModel.failure.observe(viewLifecycleOwner, Observer { result : Unit ->
+        stationsListViewModel.failure.observe(viewLifecycleOwner, Observer { result : Unit ->
             manageFailureResponse()
         })
 
@@ -72,7 +73,7 @@ class StationListFragment : Fragment() {
 
     fun manageDataResponse(stations  : List<StationEntity>) {
         progressBar.visibility = View.GONE
-        movieListAdapter.addStationsList(stations)
+        stationListAdapter.addStationsList(stations)
     }
 
     fun manageFailureResponse() {

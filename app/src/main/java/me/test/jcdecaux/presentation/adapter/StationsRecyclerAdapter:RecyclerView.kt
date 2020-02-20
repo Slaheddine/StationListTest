@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.station_item.view.*
 import me.test.jcdecaux.R
 import me.test.jcdecaux.presentation.model.StationEntity
 
-class stationsRecyclerAdapter(private val onItemClickListener: OnItemClickListener):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StationsRecyclerAdapter(private val onItemClickListener: OnItemClickListener):RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var listOfStations = arrayListOf<StationEntity>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
