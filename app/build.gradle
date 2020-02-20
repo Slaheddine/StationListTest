@@ -22,6 +22,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', '""'
+            buildConfigField 'String', 'API_KEY', '""'
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'BASE_URL', '"https://api.jcdecaux.com/vls/v1/"'
+            buildConfigField 'String', 'API_KEY', '"76cd97ebd015b42a65fe4bc333c7e64f0e8dad9c"'
         }
     }
 

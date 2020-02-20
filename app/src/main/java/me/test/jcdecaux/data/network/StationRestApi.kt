@@ -1,5 +1,6 @@
 package me.test.jcdecaux.data.network
 
+import me.test.jcdecaux.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -8,14 +9,12 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-const val THE_MOVIE_DATABASE = "https://api.jcdecaux.com/vls/v1/"
-
 class StationRestApi constructor() {
 
     val service: RestApi
 
     init {
-        service = createWebService<RestApi>(THE_MOVIE_DATABASE)
+        service = createWebService<RestApi>(BuildConfig.BASE_URL)
     }
 
     inline fun <reified T> createWebService(baseUrl: String): T {
@@ -40,7 +39,7 @@ class StationRestApi constructor() {
 
         override fun intercept(chain: Interceptor.Chain): Response {
             val url = chain.request().url().newBuilder()
-                .addQueryParameter("apiKey", "76cd97ebd015b42a65fe4bc333c7e64f0e8dad9c")
+                .addQueryParameter("apiKey", BuildConfig.API_KEY)
                 .build()
 
             val request = chain.request().newBuilder()
