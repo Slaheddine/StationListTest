@@ -50,7 +50,11 @@ class StationListFragment : Fragment() {
 
     }
 
-    private fun initView() {
+    fun initRecycleView() {
+
+    }
+
+    fun initView() {
 
         moviesListViewModel.stationListLiveData.observe(viewLifecycleOwner, Observer { result : List<StationEntity> ->
             manageDataResponse(result)
